@@ -1,8 +1,15 @@
 import { useState, useEffect } from 'react';
-import { ListingItem } from '../types';
-import { seedListings } from '../data/seed';
+import { ListingItem, ListingStatus } from '../types';
+import { defaultListings } from '../data/listings';
 
 const STORAGE_KEY = 'whatsapp-gallery-listings';
+
+// Migrate old lowercase status values to new enum values
+function migrateStatus(status: string): ListingStatus {
+  if (status === 'available' || status === ListingStatus.Available) return ListingStatus.Available;
+  if (status === 'sold' || status === ListingStatus.Sold) return ListingStatus.Sold;
+  return ListingStatus.Available;
+}
 
 export function useLocalDataStore() {
   const [listings, setListings] = useState<ListingItem[]>([]);
@@ -14,22 +21,24 @@ export function useLocalDataStore() {
     if (stored) {
       try {
         const parsed = JSON.parse(stored);
-        // Migration: Convert imageUrl to imageUrls if needed
+        // Migration: Convert imageUrl to imageUrls if needed, and migrate status enum
         const migrated = parsed.map((item: any) => {
-          if (item.imageUrl && !item.imageUrls) {
-            const { imageUrl, ...rest } = item;
-            return { ...rest, imageUrls: [imageUrl] };
+          let migrated = item;
+          if (migrated.imageUrl && !migrated.imageUrls) {
+            const { imageUrl, ...rest } = migrated;
+            migrated = { ...rest, imageUrls: [imageUrl] };
           }
-          return item;
+          migrated = { ...migrated, status: migrateStatus(migrated.status) };
+          return migrated;
         });
         setListings(migrated);
       } catch (e) {
         console.error("Failed to parse stored listings", e);
-        setListings(seedListings);
+        setListings(defaultListings);
       }
     } else {
-      setListings(seedListings);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(seedListings));
+      setListings(defaultListings);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultListings));
     }
     setLoading(false);
   }, []);

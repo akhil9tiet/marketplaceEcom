@@ -2,7 +2,7 @@ import { ListingItem, ListingStatus } from '../types';
 import { v4 as uuidv4 } from 'uuid';
 import { IMAGES } from '../assets/images';
 
-export const seedListings: ListingItem[] = [
+export const defaultListings: ListingItem[] = [
   {
     id: uuidv4(),
     title: "Extendable Solid Wood Dining Set",

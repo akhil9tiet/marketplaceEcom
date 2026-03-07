@@ -3,7 +3,7 @@ import { useDropzone } from 'react-dropzone';
 import { Upload, X, Image as ImageIcon, Save } from 'lucide-react';
 import { Button } from '../Shared/Button';
 import { Input } from '../Shared/Input';
-import { ListingItem } from '../../types';
+import { ListingItem, ListingStatus } from '../../types';
 import { v4 as uuidv4 } from 'uuid';
 import { IMAGES } from '../../assets/images';
 
@@ -17,7 +17,7 @@ export const UploadForm: React.FC<UploadFormProps> = ({ onSubmit, initialData, o
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
-  const [status, setStatus] = useState<'available' | 'sold'>('available');
+  const [status, setStatus] = useState<ListingStatus>(ListingStatus.Available);
   const [images, setImages] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [showAssetPicker, setShowAssetPicker] = useState(false);
@@ -33,7 +33,7 @@ export const UploadForm: React.FC<UploadFormProps> = ({ onSubmit, initialData, o
       setTitle('');
       setDescription('');
       setPrice('');
-      setStatus('available');
+      setStatus(ListingStatus.Available);
       setImages([]);
     }
   }, [initialData]);
@@ -96,7 +96,7 @@ export const UploadForm: React.FC<UploadFormProps> = ({ onSubmit, initialData, o
       setTitle('');
       setDescription('');
       setPrice('');
-      setStatus('available');
+      setStatus(ListingStatus.Available);
       setImages([]);
     }
     setLoading(false);
@@ -226,11 +226,11 @@ export const UploadForm: React.FC<UploadFormProps> = ({ onSubmit, initialData, o
           </label>
           <select
             value={status}
-            onChange={(e) => setStatus(e.target.value as 'available' | 'sold')}
+            onChange={(e) => setStatus(e.target.value as ListingStatus)}
             className="block w-full rounded-lg border border-gray-300 px-3 py-2 text-gray-900 focus:border-black focus:outline-none focus:ring-1 focus:ring-black sm:text-sm"
           >
-            <option value="available">Available</option>
-            <option value="sold">Sold</option>
+            <option value={ListingStatus.Available}>Available</option>
+            <option value={ListingStatus.Sold}>Sold</option>
           </select>
         </div>
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ListingItem } from '../../types';
+import { ListingItem, ListingStatus } from '../../types';
 import { Badge } from '../Shared/Badge';
 
 interface OverlayDetailsProps {
@@ -23,17 +23,17 @@ export const OverlayDetails: React.FC<OverlayDetailsProps> = ({ activeItem }) =>
         >
           <div>
             <Badge status={activeItem.status} className="mb-4" />
-            <h1 className={`text-4xl font-bold tracking-tight lg:text-5xl ${activeItem.status === 'sold' ? 'text-gray-400' : 'text-gray-900'}`}>
+            <h1 className={`text-4xl font-bold tracking-tight lg:text-5xl ${activeItem.status === ListingStatus.Sold ? 'text-gray-400' : 'text-gray-900'}`}>
               {activeItem.title}
             </h1>
-            <p className={`mt-2 text-2xl font-medium ${activeItem.status === 'sold' ? 'text-gray-300' : 'text-gray-500'}`}>
+            <p className={`mt-2 text-2xl font-medium ${activeItem.status === ListingStatus.Sold ? 'text-gray-300' : 'text-gray-500'}`}>
               {activeItem.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
             </p>
           </div>
 
           <div className="h-px w-12 bg-gray-300" />
 
-          <p className="text-lg leading-relaxed text-gray-600">
+          <p className={`text-lg leading-relaxed ${activeItem.status === ListingStatus.Sold ? 'text-gray-300' : 'text-gray-600'}`}>
             {activeItem.description}
           </p>
 

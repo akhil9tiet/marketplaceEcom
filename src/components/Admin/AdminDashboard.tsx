@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocalDataStore } from '../../hooks/useLocalDataStore';
 import { UploadForm } from './UploadForm';
 import { ListingsTable } from './ListingsTable';
-import { ListingItem } from '../../types';
+import { ListingItem, ListingStatus } from '../../types';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, LayoutDashboard } from 'lucide-react';
 
@@ -13,7 +13,7 @@ export const AdminDashboard: React.FC = () => {
   const handleToggleStatus = (item: ListingItem) => {
     updateListing({
       ...item,
-      status: item.status === 'available' ? 'sold' : 'available',
+      status: item.status === ListingStatus.Available ? ListingStatus.Sold : ListingStatus.Available,
     });
   };
 

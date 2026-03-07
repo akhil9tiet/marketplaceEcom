@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListingItem } from '../../types';
+import { ListingItem, ListingStatus } from '../../types';
 import { Badge } from '../Shared/Badge';
 import { Button } from '../Shared/Button';
 import { Trash2, Edit2, Eye, EyeOff } from 'lucide-react';
@@ -55,13 +55,13 @@ export const ListingsTable: React.FC<ListingsTableProps> = ({
                       <img className="h-10 w-10 rounded-full object-cover" src={item.imageUrls[0]} alt="" />
                     </div>
                     <div className="ml-4">
-                      <div className="text-sm font-medium text-gray-900">{item.title}</div>
-                      <div className="text-sm text-gray-500 truncate max-w-xs">{item.description}</div>
+                      <div className={`text-sm font-medium ${item.status === ListingStatus.Sold ? 'text-gray-400' : 'text-gray-900'}`}>{item.title}</div>
+                      <div className={`text-sm truncate max-w-xs ${item.status === ListingStatus.Sold ? 'text-gray-300' : 'text-gray-500'}`}>{item.description}</div>
                     </div>
                   </div>
                 </td>
                 <td className="whitespace-nowrap px-6 py-4">
-                  <div className="text-sm text-gray-900">
+                  <div className={`text-sm ${item.status === ListingStatus.Sold ? 'text-gray-400' : 'text-gray-900'}`}>
                     {item.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
                   </div>
                 </td>
@@ -74,9 +74,9 @@ export const ListingsTable: React.FC<ListingsTableProps> = ({
                       variant="ghost"
                       size="sm"
                       onClick={() => onToggleStatus(item)}
-                      title={item.status === 'available' ? 'Mark as Sold' : 'Mark as Available'}
-                    >
-                      {item.status === 'available' ? (
+                      title={item.status === ListingStatus.Available ? 'Mark as Sold' : 'Mark as Available'}
+                      >
+                      {item.status === ListingStatus.Available ? (
                         <Eye className="h-4 w-4 text-green-600" />
                       ) : (
                         <EyeOff className="h-4 w-4 text-gray-400" />
