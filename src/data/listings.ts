@@ -149,7 +149,7 @@ export const defaultListings: ListingItem[] = [
   },
   {
     id: "default-lamp-extra",
-    title: "Modern Floor Lamp",
+    title: "Modern Ikea Floor Lamp",
     description: "Sleek modern floor lamp with warm ambient lighting. Perfect for living rooms or reading corners.",
     price: 15,
     status: ListingStatus.Available,
@@ -161,7 +161,7 @@ export const defaultListings: ListingItem[] = [
     id: "default-hallway-painting",
     title: "Large Hallway Painting",
     description: "Striking large-scale painting ideal for hallways or living room feature walls. Makes a bold statement.",
-    price: 25,
+    price: 20,
     status: ListingStatus.Available,
     imageUrls: [IMAGES.LARGE_HALLWAY_PAINTING],
     dimensions: { length: 48, width: 2, height: 36 },
@@ -179,7 +179,7 @@ export const defaultListings: ListingItem[] = [
   },
   {
     id: "default-nightstand",
-    title: "Bedside Nightstand",
+    title: "Ikea Bedside Nightstand",
     description: "Compact bedside nightstand with a drawer and open shelf. Perfect companion for any bed frame.",
     price: 15,
     status: ListingStatus.Available,
@@ -189,7 +189,7 @@ export const defaultListings: ListingItem[] = [
   },
   {
     id: "default-painting-1",
-    title: "Abstract Wall Painting",
+    title: "Abstract HomeDecor Wall Painting",
     description: "Beautiful abstract painting with rich, layered colors. A great accent piece for any wall.",
     price: 20,
     status: ListingStatus.Available,
