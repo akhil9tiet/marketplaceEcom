@@ -37,6 +37,19 @@ export const OverlayDetails: React.FC<OverlayDetailsProps> = ({ activeItem }) =>
             {activeItem.description}
           </p>
 
+          {activeItem.dimensions && (
+            <div className="flex flex-wrap gap-2">
+              <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${activeItem.status === ListingStatus.Sold ? 'bg-gray-100 text-gray-400' : 'bg-gray-100 text-gray-700'}`}>
+                L: {activeItem.dimensions.length}"
+              </span>
+              <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${activeItem.status === ListingStatus.Sold ? 'bg-gray-100 text-gray-400' : 'bg-gray-100 text-gray-700'}`}>
+                W: {activeItem.dimensions.width}"
+              </span>
+              <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${activeItem.status === ListingStatus.Sold ? 'bg-gray-100 text-gray-400' : 'bg-gray-100 text-gray-700'}`}>
+                H: {activeItem.dimensions.height}"
+              </span>
+            </div>
+          )}
 
         </motion.div>
       </AnimatePresence>

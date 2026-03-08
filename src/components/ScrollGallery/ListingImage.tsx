@@ -135,9 +135,19 @@ export const ListingImage: React.FC<ListingImageProps> = ({ item, index }) => {
         {/* Mobile Text Overlay - Only visible on small screens */}
         <div className="pointer-events-none absolute bottom-0 left-0 w-full p-6 text-white md:hidden">
           <h2 className={`text-2xl font-bold ${item.status === 'sold' ? 'text-gray-300' : ''}`}>{item.title}</h2>
-          <p className={`mt-1 text-sm opacity-90 ${item.status === 'sold' ? 'text-gray-400' : ''}`}>
-            {item.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
-          </p>
+          {item.dimensions && (
+            <div className="mt-2 flex gap-1.5">
+              <span className="rounded-full bg-white/20 backdrop-blur-sm px-2.5 py-0.5 text-[11px] font-medium text-white">
+                L: {item.dimensions.length}"
+              </span>
+              <span className="rounded-full bg-white/20 backdrop-blur-sm px-2.5 py-0.5 text-[11px] font-medium text-white">
+                W: {item.dimensions.width}"
+              </span>
+              <span className="rounded-full bg-white/20 backdrop-blur-sm px-2.5 py-0.5 text-[11px] font-medium text-white">
+                H: {item.dimensions.height}"
+              </span>
+            </div>
+          )}
           {item.status === 'sold' && (
             <span className="mt-2 inline-block rounded-full bg-red-100 px-2.5 py-0.5 text-xs font-medium uppercase tracking-wide text-red-800">
               Sold
