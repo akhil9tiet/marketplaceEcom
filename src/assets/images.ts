@@ -1,7 +1,15 @@
+import barStool2 from './images/barStool2.jpg';
+import barStools1 from './images/barStools1.jpg';
+import coffeeTable from './images/coffee_table.jpg';
+import dining2 from './images/dining2.jpg';
+import dining1 from './images/dirning1.jpg';
+import entryChair from './images/entryChair.jpg';
+
 export const IMAGES = {
-  SATCHEL_1: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&q=80&w=800",
-  SATCHEL_2: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&q=80&w=800",
-  LAMP: "https://images.unsplash.com/photo-1507473888900-52e1adad5468?auto=format&fit=crop&q=80&w=800",
-  COFFEE_SET: "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&q=80&w=800",
-  PLACEHOLDER: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=800", // Generic placeholder
+  BAR_STOOL_1: barStools1,
+  BAR_STOOL_2: barStool2,
+  COFFEE_TABLE: coffeeTable,
+  DINING_1: dining1,
+  DINING_2: dining2,
+  ENTRY_CHAIR: entryChair,
 };

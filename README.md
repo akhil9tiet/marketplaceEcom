@@ -34,7 +34,7 @@ A scrollytelling gallery for WhatsApp images with an admin portal.
     -   `Shared`: Common UI elements (Button, Input, etc.).
 -   `src/hooks`: Custom hooks (`useActiveSection`, `useLocalDataStore`).
 -   `src/pages`: Page components (`Home`, `Admin`).
--   `src/data`: Initial seed data.
+-   `src/data`: Default listings data.
 
 ## Adding a Real Backend
 
