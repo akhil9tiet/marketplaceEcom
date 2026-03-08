@@ -1,73 +1,87 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { ListingItem, ListingStatus } from '../types';
 import { defaultListings } from '../data/listings';
 
-const STORAGE_KEY = 'whatsapp-gallery-listings';
+const USER_LISTINGS_KEY = 'marketplace-user-listings';
+const OVERRIDES_KEY = 'marketplace-default-overrides';
 
-// Migrate old lowercase status values to new enum values
-function migrateStatus(status: string): ListingStatus {
-  if (status === 'available' || status === ListingStatus.Available) return ListingStatus.Available;
-  if (status === 'sold' || status === ListingStatus.Sold) return ListingStatus.Sold;
-  return ListingStatus.Available;
-}
+// Stores partial overrides for default listings (e.g. status changes, edits)
+type OverridesMap = Record<string, Partial<ListingItem>>;
 
 export function useLocalDataStore() {
-  const [listings, setListings] = useState<ListingItem[]>([]);
+  const [userListings, setUserListings] = useState<ListingItem[]>([]);
+  const [overrides, setOverrides] = useState<OverridesMap>({});
   const [loading, setLoading] = useState(true);
 
-  // Load initial data
+  // Load user listings and overrides from localStorage
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      try {
-        const parsed = JSON.parse(stored);
-        // Migration: Convert imageUrl to imageUrls if needed, and migrate status enum
-        const migrated = parsed.map((item: any) => {
-          let migrated = item;
-          if (migrated.imageUrl && !migrated.imageUrls) {
-            const { imageUrl, ...rest } = migrated;
-            migrated = { ...rest, imageUrls: [imageUrl] };
-          }
-          migrated = { ...migrated, status: migrateStatus(migrated.status) };
-          return migrated;
-        });
-        setListings(migrated);
-      } catch (e) {
-        console.error("Failed to parse stored listings", e);
-        setListings(defaultListings);
-      }
-    } else {
-      setListings(defaultListings);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultListings));
+    try {
+      const storedUser = localStorage.getItem(USER_LISTINGS_KEY);
+      if (storedUser) setUserListings(JSON.parse(storedUser));
+
+      const storedOverrides = localStorage.getItem(OVERRIDES_KEY);
+      if (storedOverrides) setOverrides(JSON.parse(storedOverrides));
+    } catch (e) {
+      console.error("Failed to parse stored data", e);
     }
     setLoading(false);
   }, []);
 
-  // Save changes to localStorage
-  const saveListings = (newListings: ListingItem[]) => {
-    setListings(newListings);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(newListings));
-  };
+  // Combined listings: defaults (with overrides) first, then user-added
+  const listings: ListingItem[] = [
+    ...defaultListings.map((item) =>
+      overrides[item.id] ? { ...item, ...overrides[item.id], id: item.id } : item
+    ),
+    ...userListings,
+  ];
+
+  const saveUserListings = useCallback((updated: ListingItem[]) => {
+    setUserListings(updated);
+    localStorage.setItem(USER_LISTINGS_KEY, JSON.stringify(updated));
+  }, []);
+
+  const saveOverrides = useCallback((updated: OverridesMap) => {
+    setOverrides(updated);
+    localStorage.setItem(OVERRIDES_KEY, JSON.stringify(updated));
+  }, []);
+
+  const isDefaultListing = (id: string) =>
+    defaultListings.some((item) => item.id === id);
 
   const addListing = (item: ListingItem) => {
-    const updated = [item, ...listings];
-    saveListings(updated);
+    saveUserListings([item, ...userListings]);
   };
 
   const updateListing = (updatedItem: ListingItem) => {
-    const updated = listings.map((item) =>
-      item.id === updatedItem.id ? updatedItem : item
-    );
-    saveListings(updated);
+    if (isDefaultListing(updatedItem.id)) {
+      // Store only the changed fields as an override
+      const base = defaultListings.find((d) => d.id === updatedItem.id)!;
+      const override: Partial<ListingItem> = {};
+      for (const key of Object.keys(updatedItem) as (keyof ListingItem)[]) {
+        if (updatedItem[key] !== base[key]) {
+          (override as any)[key] = updatedItem[key];
+        }
+      }
+      saveOverrides({ ...overrides, [updatedItem.id]: override });
+    } else {
+      const updated = userListings.map((item) =>
+        item.id === updatedItem.id ? updatedItem : item
+      );
+      saveUserListings(updated);
+    }
   };
 
   const deleteListing = (id: string) => {
-    const updated = listings.filter((item) => item.id !== id);
-    saveListings(updated);
+    if (isDefaultListing(id)) return; // Don't allow deleting default listings
+    const updated = userListings.filter((item) => item.id !== id);
+    saveUserListings(updated);
   };
 
   const reorderListings = (newListings: ListingItem[]) => {
-    saveListings(newListings);
+    // Reorder only affects user listings order
+    const defaultIds = new Set(defaultListings.map((d) => d.id));
+    const reorderedUser = newListings.filter((item) => !defaultIds.has(item.id));
+    saveUserListings(reorderedUser);
   };
 
   return {
