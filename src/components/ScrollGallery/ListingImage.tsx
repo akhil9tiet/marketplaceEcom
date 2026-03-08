@@ -66,7 +66,7 @@ export const ListingImage: React.FC<ListingImageProps> = ({ item, index }) => {
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      viewport={{ once: false, margin: "-20%" }}
+      viewport={{ once: true, margin: "-10%" }}
     >
       <motion.div
         className="group relative aspect-[3/4] w-full max-w-md overflow-hidden rounded-2xl shadow-2xl md:max-w-lg lg:max-w-xl"
