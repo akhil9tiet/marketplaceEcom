@@ -1,6 +1,8 @@
 import { ListingItem, ListingStatus } from '../types';
 import { IMAGES } from '../assets/images';
 
+const ONE_DAY_AGO = Date.now() - 86400000;
+
 export const defaultListings: ListingItem[] = [
   {
     id: "default-dining-set",
@@ -13,7 +15,7 @@ export const defaultListings: ListingItem[] = [
       IMAGES.DINING_2
     ],
     dimensions: { length: 60, width: 36, height: 30 },
-    createdAt: Date.now(),
+    createdAt: ONE_DAY_AGO,
   },
   {
     id: "default-bar-stools",
@@ -23,7 +25,7 @@ export const defaultListings: ListingItem[] = [
     status: ListingStatus.Sold,
     imageUrls: [IMAGES.BAR_STOOL_1, IMAGES.BAR_STOOL_2],
     dimensions: { length: 16, width: 16, height: 30 },
-    createdAt: Date.now() - 100000,
+    createdAt: ONE_DAY_AGO,
   },
   {
     id: "default-coffee-table",
@@ -33,7 +35,7 @@ export const defaultListings: ListingItem[] = [
     status: ListingStatus.Available,
     imageUrls: [IMAGES.COFFEE_TABLE],
     dimensions: { length: 48, width: 24, height: 18 },
-    createdAt: Date.now() - 200000,
+    createdAt: ONE_DAY_AGO,
   },
   {
     id: "default-entry-chair",
@@ -43,7 +45,7 @@ export const defaultListings: ListingItem[] = [
     status: ListingStatus.Available,
     imageUrls: [IMAGES.ENTRY_CHAIR],
     dimensions: { length: 24, width: 22, height: 34 },
-    createdAt: Date.now() - 300000,
+    createdAt: ONE_DAY_AGO,
   },
   {
     id: "default-accent-chair",
@@ -53,7 +55,7 @@ export const defaultListings: ListingItem[] = [
     status: ListingStatus.Available,
     imageUrls: [IMAGES.ACCENT_CHAIR],
     dimensions: { length: 28, width: 26, height: 32 },
-    createdAt: Date.now(),
+    createdAt: ONE_DAY_AGO,
   },
   {
     id: "default-lamp",
@@ -63,7 +65,7 @@ export const defaultListings: ListingItem[] = [
     status: ListingStatus.Available,
     imageUrls: [IMAGES.LAMP, IMAGES.LAMP_2],
     dimensions: { length: 6, width: 6, height: 18 },
-    createdAt: Date.now() - 400000,
+    createdAt: ONE_DAY_AGO,
   },
   {
     id: "default-metal-stool",
@@ -73,6 +75,6 @@ export const defaultListings: ListingItem[] = [
     status: ListingStatus.Available,
     imageUrls: [IMAGES.METAL_STOOL],
     dimensions: { length: 14, width: 14, height: 26 },
-    createdAt: Date.now() - 500000,
+    createdAt: ONE_DAY_AGO,
   },
 ];
