@@ -144,6 +144,14 @@ export const ListingImage: React.FC<ListingImageProps> = ({ item, index }) => {
             {item.status}
           </span>
           <h2 className={`text-2xl font-bold ${item.status === ListingStatus.Sold ? 'text-gray-300' : ''}`}>{item.title}</h2>
+          <p className="mt-1 text-lg font-medium">
+            {item.oldPrice && (
+              <span className="line-through text-gray-400 mr-1.5 text-sm">
+                {item.oldPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+              </span>
+            )}
+            {item.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+          </p>
           {item.dimensions && (
             <div className="mt-2 flex gap-1.5">
               <span className="rounded-full bg-white/20 backdrop-blur-sm px-2.5 py-0.5 text-[11px] font-medium text-white">
