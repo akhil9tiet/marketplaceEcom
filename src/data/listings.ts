@@ -197,4 +197,23 @@ export const defaultListings: ListingItem[] = [
     dimensions: { length: 30, width: 2, height: 40 },
     createdAt: ONE_DAY_AGO,
   },
+  {
+    id: "default-chair",
+    title: "Classic Wooden Chair",
+    description: "Solid wood chair with a timeless design. Comfortable and sturdy — great for dining or as a desk chair.",
+    price: 20,
+    status: ListingStatus.Available,
+    imageUrls: [IMAGES.CHAIR_1],
+    dimensions: { length: 18, width: 18, height: 34 },
+    createdAt: ONE_DAY_AGO,
+  },
+  {
+    id: "default-decorative-set",
+    title: "Decorative Accents Collection",
+    description: "A curated set of decorative accent pieces to style your shelves, mantel, or coffee table. Sold together.",
+    price: 15,
+    status: ListingStatus.Available,
+    imageUrls: [IMAGES.DECORATIVE_2, IMAGES.DECORATIVE_3, IMAGES.DECORATIVE_4, IMAGES.DECORATIVE_5],
+    createdAt: ONE_DAY_AGO,
+  },
 ];

@@ -27,6 +27,11 @@ import tvTableDim2 from './images/tvTable_dim2.jpeg';
 import tvTableDim3 from './images/tvTablle_dim3.jpeg';
 import tvDim from './images/tv_dim.jpeg';
 import tvTable from './images/tv_table.jpeg';
+import chair1 from './images/chair1.jpeg';
+import decorative2 from './images/decorative_2.jpeg';
+import decorative3 from './images/decorative_3.jpeg';
+import decorative4 from './images/decorative_4.jpeg';
+import decorative5 from './images/decorative5.jpeg';
 
 export const IMAGES = {
   BAR_STOOL_1: barStools1,
@@ -58,4 +63,9 @@ export const IMAGES = {
   TV_TABLE_DIM_3: tvTableDim3,
   TV_DIM: tvDim,
   TV_TABLE: tvTable,
+  CHAIR_1: chair1,
+  DECORATIVE_2: decorative2,
+  DECORATIVE_3: decorative3,
+  DECORATIVE_4: decorative4,
+  DECORATIVE_5: decorative5,
 };
