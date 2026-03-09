@@ -14,7 +14,9 @@ export const Badge: React.FC<BadgeProps> = ({ status, className }) => {
         'inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium uppercase tracking-wide',
         status === ListingStatus.Available
           ? 'bg-green-100 text-green-800'
-          : 'bg-amber-100 text-amber-800',
+          : status === ListingStatus.Pending
+            ? 'bg-orange-100 text-orange-800'
+            : 'bg-amber-100 text-amber-800',
         className
       )}
     >

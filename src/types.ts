@@ -1,5 +1,6 @@
 export enum ListingStatus {
   Available = "Available",
+  Pending = "Pending",
   Sold = "Sold",
 }
 
@@ -14,6 +15,7 @@ export interface ListingItem {
   title: string;
   description: string;
   price: number;
+  oldPrice?: number;
   status: ListingStatus;
   imageUrls: string[]; // base64 or blob URL
   dimensions?: Dimensions;

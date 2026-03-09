@@ -17,6 +17,7 @@ export const UploadForm: React.FC<UploadFormProps> = ({ onSubmit, initialData, o
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
+  const [oldPrice, setOldPrice] = useState('');
   const [status, setStatus] = useState<ListingStatus>(ListingStatus.Available);
   const [images, setImages] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
@@ -27,6 +28,7 @@ export const UploadForm: React.FC<UploadFormProps> = ({ onSubmit, initialData, o
       setTitle(initialData.title);
       setDescription(initialData.description);
       setPrice(initialData.price.toString());
+      setOldPrice(initialData.oldPrice ? initialData.oldPrice.toString() : '');
       setStatus(initialData.status);
       setImages(initialData.imageUrls);
     } else {
@@ -84,6 +86,7 @@ export const UploadForm: React.FC<UploadFormProps> = ({ onSubmit, initialData, o
       title,
       description,
       price: parseFloat(price),
+      ...(oldPrice ? { oldPrice: parseFloat(oldPrice) } : {}),
       status,
       imageUrls: images,
       createdAt: initialData ? initialData.createdAt : Date.now(),
@@ -96,6 +99,7 @@ export const UploadForm: React.FC<UploadFormProps> = ({ onSubmit, initialData, o
       setTitle('');
       setDescription('');
       setPrice('');
+      setOldPrice('');
       setStatus(ListingStatus.Available);
       setImages([]);
     }
@@ -220,6 +224,16 @@ export const UploadForm: React.FC<UploadFormProps> = ({ onSubmit, initialData, o
           required
         />
 
+        <Input
+          label="Old Price ($) — optional, shown as crossed out"
+          type="number"
+          value={oldPrice}
+          onChange={(e) => setOldPrice(e.target.value)}
+          placeholder="0.00"
+          min="0"
+          step="0.01"
+        />
+
         <div>
           <label className="mb-1.5 block text-sm font-medium text-gray-700">
             Status
@@ -230,6 +244,7 @@ export const UploadForm: React.FC<UploadFormProps> = ({ onSubmit, initialData, o
             className="block w-full rounded-lg border border-gray-300 px-3 py-2 text-gray-900 focus:border-black focus:outline-none focus:ring-1 focus:ring-black sm:text-sm"
           >
             <option value={ListingStatus.Available}>Available</option>
+            <option value={ListingStatus.Pending}>Pending</option>
             <option value={ListingStatus.Sold}>Sold</option>
           </select>
         </div>

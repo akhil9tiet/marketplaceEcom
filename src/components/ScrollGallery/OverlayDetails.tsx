@@ -27,6 +27,11 @@ export const OverlayDetails: React.FC<OverlayDetailsProps> = ({ activeItem }) =>
               {activeItem.title}
             </h1>
             <p className={`mt-2 text-2xl font-medium ${activeItem.status === ListingStatus.Sold ? 'text-gray-300' : 'text-gray-500'}`}>
+              {activeItem.oldPrice && (
+                <span className="line-through text-gray-400 mr-2 text-xl">
+                  {activeItem.oldPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+                </span>
+              )}
               {activeItem.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
             </p>
           </div>
