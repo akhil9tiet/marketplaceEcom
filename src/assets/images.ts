@@ -32,6 +32,8 @@ import decorative2 from './images/decorative_2.jpeg';
 import decorative3 from './images/decorative_3.jpeg';
 import decorative4 from './images/decorative_4.jpeg';
 import decorative5 from './images/decorative5.jpeg';
+import ottoman from './images/ottomon.jpeg';
+import ottoman2 from './images/ottomon2.jpeg';
 
 export const IMAGES = {
   BAR_STOOL_1: barStools1,
@@ -68,4 +70,6 @@ export const IMAGES = {
   DECORATIVE_3: decorative3,
   DECORATIVE_4: decorative4,
   DECORATIVE_5: decorative5,
+  OTTOMAN: ottoman,
+  OTTOMAN_2: ottoman2,
 };
