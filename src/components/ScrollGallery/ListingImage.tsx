@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ListingItem } from '../../types';
+import { ListingItem, ListingStatus } from '../../types';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface ListingImageProps {
@@ -134,7 +134,16 @@ export const ListingImage: React.FC<ListingImageProps> = ({ item, index }) => {
         
         {/* Mobile Text Overlay - Only visible on small screens */}
         <div className="pointer-events-none absolute bottom-0 left-0 w-full p-6 text-white md:hidden">
-          <h2 className={`text-2xl font-bold ${item.status === 'sold' ? 'text-gray-300' : ''}`}>{item.title}</h2>
+          <span className={`mb-2 inline-block rounded-full px-2.5 py-0.5 text-xs font-medium uppercase tracking-wide ${
+            item.status === ListingStatus.Available
+              ? 'bg-green-100 text-green-800'
+              : item.status === ListingStatus.Pending
+                ? 'bg-orange-100 text-orange-800'
+                : 'bg-red-100 text-red-800'
+          }`}>
+            {item.status}
+          </span>
+          <h2 className={`text-2xl font-bold ${item.status === ListingStatus.Sold ? 'text-gray-300' : ''}`}>{item.title}</h2>
           {item.dimensions && (
             <div className="mt-2 flex gap-1.5">
               <span className="rounded-full bg-white/20 backdrop-blur-sm px-2.5 py-0.5 text-[11px] font-medium text-white">
@@ -147,11 +156,6 @@ export const ListingImage: React.FC<ListingImageProps> = ({ item, index }) => {
                 H: {item.dimensions.height}"
               </span>
             </div>
-          )}
-          {item.status === 'sold' && (
-            <span className="mt-2 inline-block rounded-full bg-red-100 px-2.5 py-0.5 text-xs font-medium uppercase tracking-wide text-red-800">
-              Sold
-            </span>
           )}
         </div>
       </motion.div>
