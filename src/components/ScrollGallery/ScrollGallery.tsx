@@ -44,6 +44,9 @@ export const ScrollGallery: React.FC<ScrollGalleryProps> = ({ items }) => {
               Please send me a message when you reach <a href="https://maps.google.com/?q=Hazen+High+School,+1101+Hoquiam+Ave+NE,+Renton,+WA+98059" target="_blank" rel="noopener noreferrer" className="font-semibold text-white underline underline-offset-2 hover:text-gray-200">Hazen High School, Renton</a> — 1101 Hoquiam Ave NE, Renton, WA 98059. I will send you the exact address then.
             </p>
           </div>
+          <p className="mt-4 text-xs text-gray-400 italic">
+            * We are currently working to update the dimensions for all listings. Please check back soon.
+          </p>
         </div>
       </div>
 
