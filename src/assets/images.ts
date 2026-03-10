@@ -34,6 +34,21 @@ import decorative4 from './images/decorative_4.jpeg';
 import decorative5 from './images/decorative5.jpeg';
 import ottoman from './images/ottomon.jpeg';
 import ottoman2 from './images/ottomon2.jpeg';
+import mainstaysCube2x6 from './images/2by6MaintaysCube.JPEG';
+import angelBlissBassinet1 from './images/angelBlissBassinet1.JPEG';
+import angelBlissBassinet2 from './images/angelBlissBassinet2.JPEG';
+import ikeaShoeRack from './images/ikeaShoeRack.JPEG';
+import mainStaysLamp from './images/mainStaysLamp.JPEG';
+import mainstaysNightStand from './images/mainstaysNightStand.JPEG';
+import mainstaysStool from './images/mainstaysStool.JPEG';
+import mainstaysCube from './images/mainstays_cube.JPEG';
+import portableCooler1 from './images/portableCooler1.JPEG';
+import portableCooler2 from './images/portableCooler2.JPEG';
+import portableCooler3 from './images/portableCooler3.JPEG';
+import sturdyBigStool from './images/studrBigStool.JPEG';
+import studySteelRack from './images/studySteelRack.JPEG';
+import tallFan from './images/tallFan.JPEG';
+import targetLamp from './images/targetLamp.JPEG';
 
 export const IMAGES = {
   BAR_STOOL_1: barStools1,
@@ -72,4 +87,19 @@ export const IMAGES = {
   DECORATIVE_5: decorative5,
   OTTOMAN: ottoman,
   OTTOMAN_2: ottoman2,
+  MAINSTAYS_CUBE_2X6: mainstaysCube2x6,
+  ANGEL_BLISS_BASSINET_1: angelBlissBassinet1,
+  ANGEL_BLISS_BASSINET_2: angelBlissBassinet2,
+  IKEA_SHOE_RACK: ikeaShoeRack,
+  MAINSTAYS_LAMP: mainStaysLamp,
+  MAINSTAYS_NIGHT_STAND: mainstaysNightStand,
+  MAINSTAYS_STOOL: mainstaysStool,
+  MAINSTAYS_CUBE: mainstaysCube,
+  PORTABLE_COOLER_1: portableCooler1,
+  PORTABLE_COOLER_2: portableCooler2,
+  PORTABLE_COOLER_3: portableCooler3,
+  STURDY_BIG_STOOL: sturdyBigStool,
+  STUDY_STEEL_RACK: studySteelRack,
+  TALL_FAN: tallFan,
+  TARGET_LAMP: targetLamp,
 };
