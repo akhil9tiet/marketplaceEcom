@@ -67,9 +67,9 @@ export const ScrollGallery: React.FC<ScrollGalleryProps> = ({ items }) => {
          <div className="flex justify-between items-center">
             <span className="font-bold text-lg truncate pr-4">{activeItem?.title}</span>
             <span className="font-mono text-sm bg-black text-white px-2 py-1 rounded">
-              {activeItem?.oldPrice && (
+              {activeItem?.old_price && (
                 <span className="line-through text-gray-400 mr-1.5 text-xs">
-                  {activeItem.oldPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+                  {activeItem.old_price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
                 </span>
               )}
               {activeItem?.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}

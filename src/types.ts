@@ -4,20 +4,18 @@ export enum ListingStatus {
   Sold = "Sold",
 }
 
-export interface Dimensions {
-  length: number;
-  width: number;
-  height: number;
-}
-
 export interface ListingItem {
   id: string;
   title: string;
   description: string;
   price: number;
-  oldPrice?: number;
+  old_price: number | null;
   status: ListingStatus;
-  imageUrls: string[]; // base64 or blob URL
-  dimensions?: Dimensions;
-  createdAt: number;
+  image_urls: string[];
+  dim_length: number | null;
+  dim_width: number | null;
+  dim_height: number | null;
+  sort_order: number;
+  created_at: string;
+  updated_at: string;
 }

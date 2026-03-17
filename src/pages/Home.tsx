@@ -1,9 +1,9 @@
 import React from 'react';
 import { ScrollGallery } from '../components/ScrollGallery/ScrollGallery';
-import { useLocalDataStore } from '../hooks/useLocalDataStore';
+import { useSupabaseStore } from '../hooks/useSupabaseStore';
 
 export const Home: React.FC = () => {
-  const { listings, loading } = useLocalDataStore();
+  const { listings, loading } = useSupabaseStore();
 
   if (loading) {
     return (

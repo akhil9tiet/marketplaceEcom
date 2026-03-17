@@ -52,7 +52,7 @@ export const ListingsTable: React.FC<ListingsTableProps> = ({
                 <td className="whitespace-nowrap px-6 py-4">
                   <div className="flex items-center">
                     <div className="h-10 w-10 flex-shrink-0">
-                      <img className="h-10 w-10 rounded-full object-cover" src={item.imageUrls[0]} alt="" />
+                      <img className="h-10 w-10 rounded-full object-cover" src={item.image_urls[0] || ''} alt="" />
                     </div>
                     <div className="ml-4">
                       <div className={`text-sm font-medium ${item.status === ListingStatus.Sold ? 'text-gray-400' : 'text-gray-900'}`}>{item.title}</div>

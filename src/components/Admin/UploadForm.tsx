@@ -5,7 +5,6 @@ import { Button } from '../Shared/Button';
 import { Input } from '../Shared/Input';
 import { ListingItem, ListingStatus } from '../../types';
 import { v4 as uuidv4 } from 'uuid';
-import { IMAGES } from '../../assets/images';
 
 interface UploadFormProps {
   onSubmit: (item: ListingItem) => void;
@@ -28,9 +27,9 @@ export const UploadForm: React.FC<UploadFormProps> = ({ onSubmit, initialData, o
       setTitle(initialData.title);
       setDescription(initialData.description);
       setPrice(initialData.price.toString());
-      setOldPrice(initialData.oldPrice ? initialData.oldPrice.toString() : '');
+      setOldPrice(initialData.old_price ? initialData.old_price.toString() : '');
       setStatus(initialData.status);
-      setImages(initialData.imageUrls);
+      setImages(initialData.image_urls);
     } else {
       setTitle('');
       setDescription('');
@@ -81,15 +80,21 @@ export const UploadForm: React.FC<UploadFormProps> = ({ onSubmit, initialData, o
     setLoading(true);
 
     // Process immediately without artificial delay
+    const now = new Date().toISOString();
     const newItem: ListingItem = {
       id: initialData ? initialData.id : uuidv4(),
       title,
       description,
       price: parseFloat(price),
-      ...(oldPrice ? { oldPrice: parseFloat(oldPrice) } : {}),
+      old_price: oldPrice ? parseFloat(oldPrice) : null,
       status,
-      imageUrls: images,
-      createdAt: initialData ? initialData.createdAt : Date.now(),
+      image_urls: images,
+      dim_length: null,
+      dim_width: null,
+      dim_height: null,
+      sort_order: initialData ? initialData.sort_order : 999,
+      created_at: initialData ? initialData.created_at : now,
+      updated_at: now,
     };
 
     onSubmit(newItem);
@@ -146,26 +151,15 @@ export const UploadForm: React.FC<UploadFormProps> = ({ onSubmit, initialData, o
             onClick={() => setShowAssetPicker(!showAssetPicker)}
             className="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline"
           >
-            {showAssetPicker ? 'Hide Asset Library' : 'Pick from Asset Library'}
+            {showAssetPicker ? 'Hide Info' : 'Info'}
           </button>
         </div>
 
         {showAssetPicker && (
-          <div className="rounded-lg border border-gray-200 bg-gray-50 p-3">
-            <p className="mb-2 text-xs font-medium text-gray-500">Select an image to add:</p>
-            <div className="grid grid-cols-4 gap-2">
-              {Object.entries(IMAGES).map(([key, url]) => (
-                <button
-                  key={key}
-                  type="button"
-                  onClick={() => addAssetImage(url)}
-                  className="group relative aspect-square w-full overflow-hidden rounded-md border border-gray-200 bg-white hover:border-blue-500 hover:ring-2 hover:ring-blue-500 focus:outline-none"
-                  title={key}
-                >
-                  <img src={url} alt={key} className="h-full w-full object-cover transition-transform group-hover:scale-110" />
-                </button>
-              ))}
-            </div>
+          <div className="rounded-lg border border-blue-200 bg-blue-50 p-3">
+            <p className="text-xs text-blue-700">
+              💡 Images are uploaded directly from your device. After adding listings, images will be stored in Supabase Storage and automatically linked to your listings.
+            </p>
           </div>
         )}
 

@@ -42,15 +42,15 @@ export const ListingImage: React.FC<ListingImageProps> = ({ item, index }) => {
 
   const nextImage = (e?: React.MouseEvent) => {
     e?.stopPropagation();
-    if (item.imageUrls.length > 1) {
-      setCurrentImageIndex((prev) => (prev + 1) % item.imageUrls.length);
+    if (item.image_urls.length > 1) {
+      setCurrentImageIndex((prev) => (prev + 1) % item.image_urls.length);
     }
   };
 
   const prevImage = (e?: React.MouseEvent) => {
     e?.stopPropagation();
-    if (item.imageUrls.length > 1) {
-      setCurrentImageIndex((prev) => (prev - 1 + item.imageUrls.length) % item.imageUrls.length);
+    if (item.image_urls.length > 1) {
+      setCurrentImageIndex((prev) => (prev - 1 + item.image_urls.length) % item.image_urls.length);
     }
   };
 
@@ -80,7 +80,7 @@ export const ListingImage: React.FC<ListingImageProps> = ({ item, index }) => {
           <AnimatePresence mode="wait">
             <motion.img
               key={currentImageIndex}
-              src={item.imageUrls[currentImageIndex]}
+              src={item.image_urls[currentImageIndex]}
               alt={item.title}
               className="absolute inset-0 h-full w-full object-cover"
               initial={{ opacity: 0 }}
@@ -93,7 +93,7 @@ export const ListingImage: React.FC<ListingImageProps> = ({ item, index }) => {
           </AnimatePresence>
         </div>
 
-        {item.imageUrls.length > 1 && (
+        {item.image_urls.length > 1 && (
           <>
             {/* Navigation Arrows - Always visible on mobile, hover on desktop */}
             <button
@@ -113,7 +113,7 @@ export const ListingImage: React.FC<ListingImageProps> = ({ item, index }) => {
 
             {/* Pagination Dots - Clickable */}
             <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 space-x-2 z-10">
-              {item.imageUrls.map((_, idx) => (
+              {item.image_urls.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={(e) => goToImage(idx, e)}
@@ -145,24 +145,30 @@ export const ListingImage: React.FC<ListingImageProps> = ({ item, index }) => {
           </span>
           <h2 className={`text-2xl font-bold ${item.status === ListingStatus.Sold ? 'text-gray-300' : ''}`}>{item.title}</h2>
           <p className="mt-1 text-lg font-medium">
-            {item.oldPrice && (
+            {item.old_price && (
               <span className="line-through text-gray-400 mr-1.5 text-sm">
-                {item.oldPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+                {item.old_price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
               </span>
             )}
             {item.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
           </p>
-          {item.dimensions && (
+          {(item.dim_length || item.dim_width || item.dim_height) && (
             <div className="mt-2 flex gap-1.5">
-              <span className="rounded-full bg-white/20 backdrop-blur-sm px-2.5 py-0.5 text-[11px] font-medium text-white">
-                L: {item.dimensions.length}"
-              </span>
-              <span className="rounded-full bg-white/20 backdrop-blur-sm px-2.5 py-0.5 text-[11px] font-medium text-white">
-                W: {item.dimensions.width}"
-              </span>
-              <span className="rounded-full bg-white/20 backdrop-blur-sm px-2.5 py-0.5 text-[11px] font-medium text-white">
-                H: {item.dimensions.height}"
-              </span>
+              {item.dim_length && (
+                <span className="rounded-full bg-white/20 backdrop-blur-sm px-2.5 py-0.5 text-[11px] font-medium text-white">
+                  L: {item.dim_length}"
+                </span>
+              )}
+              {item.dim_width && (
+                <span className="rounded-full bg-white/20 backdrop-blur-sm px-2.5 py-0.5 text-[11px] font-medium text-white">
+                  W: {item.dim_width}"
+                </span>
+              )}
+              {item.dim_height && (
+                <span className="rounded-full bg-white/20 backdrop-blur-sm px-2.5 py-0.5 text-[11px] font-medium text-white">
+                  H: {item.dim_height}"
+                </span>
+              )}
             </div>
           )}
         </div>
