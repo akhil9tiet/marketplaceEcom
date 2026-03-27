@@ -50,7 +50,11 @@ import studySteelRack from './images/studySteelRack.JPEG';
 import tallFan from './images/tallFan.JPEG';
 import targetLamp from './images/targetLamp.JPEG';
 
+// Cloudinary URLs
+const CLOUDINARY_BASE = 'https://res.cloudinary.com/dyga3wuy3/image/upload';
+
 export const IMAGES = {
+  // Original images (local fallback for now - can be migrated to Cloudinary later)
   BAR_STOOL_1: barStools1,
   BAR_STOOL_2: barStool2,
   COFFEE_TABLE: coffeeTable,
@@ -102,4 +106,34 @@ export const IMAGES = {
   STUDY_STEEL_RACK: studySteelRack,
   TALL_FAN: tallFan,
   TARGET_LAMP: targetLamp,
+  
+  // New Cloudinary Images
+  CRIB_1: `${CLOUDINARY_BASE}/crib1`,
+  CRIB_2: `${CLOUDINARY_BASE}/crib2`,
+  CRIB_3: `${CLOUDINARY_BASE}/crib3`,
+  QUEEN_BED_1: `${CLOUDINARY_BASE}/queenBed1`,
+  QUEEN_BED_2: `${CLOUDINARY_BASE}/queenBed2`,
+  QUEEN_BED_3: `${CLOUDINARY_BASE}/queenBed3`,
+  KING_BED_1: `${CLOUDINARY_BASE}/kingBed1`,
+  KING_BED_3: `${CLOUDINARY_BASE}/kingBed3`,
+  CARPET_1: `${CLOUDINARY_BASE}/carpet1`,
+  NIGHT_STAND_RIGHT_SIDE_1: `${CLOUDINARY_BASE}/nightStandRightSide1`,
+  NIGHT_STAND_LEFT_1: `${CLOUDINARY_BASE}/nightStandLeft1`,
+  IKEA_DRAWER_1: `${CLOUDINARY_BASE}/ikeaDrawer1`,
+  IKEA_DRAWER_2: `${CLOUDINARY_BASE}/ikeaDrawer2`,
+  IKEA_DRESSER_DRAWER_2: `${CLOUDINARY_BASE}/ikeaDresserDrawer2`,
+  INDUSTRIAL_SCALE_STANDING_DESK: `${CLOUDINARY_BASE}/indistrialScaleStandingDesk`,
+  NEW_IKEA_DRESSING_DRAWER: `${CLOUDINARY_BASE}/newIkeaDressingDrawer`,
+  STOOL_1: `${CLOUDINARY_BASE}/stool1`,
+  HERMES_OFFICE_CHAIR_1: `${CLOUDINARY_BASE}/hermesOfficeChair1`,
+  MONITOR_27_INCH: `${CLOUDINARY_BASE}/27InchMonitorLeftRight`,
+  TV_TABLE_NEW: `${CLOUDINARY_BASE}/tv_table_g6r1b2`,
+  TV_DIM_NEW: `${CLOUDINARY_BASE}/tv_dim_ss9auh`,
+  TARGET_LAMP_NEW: `${CLOUDINARY_BASE}/targetLamp_ngymdi`,
+  TALL_FAN_NEW: `${CLOUDINARY_BASE}/tallFan_c1iwao`,
+  STUDY_STEEL_RACK_NEW: `${CLOUDINARY_BASE}/studySteelRack_ia5l4p`,
+  STURDY_BIG_STOOL_NEW: `${CLOUDINARY_BASE}/studrBigStool_zn226o`,
+  PORTABLE_COOLER_3_NEW: `${CLOUDINARY_BASE}/portableCooler3_pd3agr`,
+  PORTABLE_COOLER_2_NEW: `${CLOUDINARY_BASE}/portableCooler2_uqkmfo`,
+  PORTABLE_COOLER_1_NEW: `${CLOUDINARY_BASE}/portableCooler1_jba6iz`,
 };
